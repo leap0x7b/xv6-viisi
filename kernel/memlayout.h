@@ -7,9 +7,9 @@
 // 02000000 -- CLINT
 // 0C000000 -- PLIC
 // 10000000 -- uart0 
-// 10001000 -- Viisi disk drive
+// 20000000 -- Viisi disk drive
 // 80000000 -- boot ROM jumps here in machine mode
-//             -kernel loads the kernel here
+//             --kernel loads the kernel here
 // unused RAM after 80000000.
 
 // the kernel uses physical memory thus:
@@ -22,7 +22,7 @@
 #define UART0_IRQ 10
 
 // Viisi disk drive mmio interface
-#define DISK0 0x10001000
+#define DISK0 0x20000000L
 #define DISK0_IRQ 1
 
 // core local interruptor (CLINT), which contains the timer.
