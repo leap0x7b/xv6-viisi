@@ -2684,7 +2684,7 @@ bigdir(char *s)
   }
 }
 
-// concurrent writes to try to provoke deadlock in the virtio disk
+// concurrent writes to try to provoke deadlock in the disk drive
 // driver.
 void
 manywrites(char *s)

@@ -1,13 +1,13 @@
 // Physical memory layout
 
-// qemu -machine virt is set up like this,
-// based on qemu's hw/riscv/virt.c:
+// Viisi is set up like this,
+// based on Viisi's src/riscv/bus.zig:
 //
-// 00001000 -- boot ROM, provided by qemu
+// 00001000 -- boot ROM, provided by Viisi
 // 02000000 -- CLINT
 // 0C000000 -- PLIC
 // 10000000 -- uart0 
-// 10001000 -- virtio disk 
+// 10001000 -- Viisi disk drive
 // 80000000 -- boot ROM jumps here in machine mode
 //             -kernel loads the kernel here
 // unused RAM after 80000000.
@@ -17,20 +17,20 @@
 // end -- start of kernel page allocation area
 // PHYSTOP -- end RAM used by the kernel
 
-// qemu puts UART registers here in physical memory.
+// Viisi puts UART registers here in physical memory.
 #define UART0 0x10000000L
 #define UART0_IRQ 10
 
-// virtio mmio interface
-#define VIRTIO0 0x10001000
-#define VIRTIO0_IRQ 1
+// Viisi disk drive mmio interface
+#define DISK0 0x10001000
+#define DISK0_IRQ 1
 
 // core local interruptor (CLINT), which contains the timer.
 #define CLINT 0x2000000L
 #define CLINT_MTIMECMP(hartid) (CLINT + 0x4000 + 8*(hartid))
 #define CLINT_MTIME (CLINT + 0xBFF8) // cycles since boot.
 
-// qemu puts platform-level interrupt controller (PLIC) here.
+// Viisi puts platform-level interrupt controller (PLIC) here.
 #define PLIC 0x0c000000L
 #define PLIC_PRIORITY (PLIC + 0x0)
 #define PLIC_PENDING (PLIC + 0x1000)
